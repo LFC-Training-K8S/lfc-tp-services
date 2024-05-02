@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: transactions
+  name: transactions
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: transactions
+  template:
+    metadata:
+      labels:
+        app: transactions
+    spec:
+      containers:
+      - image: mmkmou/transactions
+        name: transactions
+        env:
+        - name: DATASOURCE_URL
+          value: jdbc:postgresql://postgres-svc:5432/postgres
+        - name: DATASOURCE_USERNAME
+          value: postgres
+        - name: DATASOURCE_PASSWORD
+          value: Azerty@12
+
+        
+        
